@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Guess the number</title>
+    <link rel="icon" type="image/png" href="https://guinlist.files.wordpress.com/2018/02/guessing.png" />
+    <style>
+        body {
+            background-color: black;
+        }
+
+        h1 {
+            color: aliceblue;
+            font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+            text-align: center;
+            text-decoration: underline;
+        }
+
+        div#qdiv {
+            height: 100px;
+            width: 100px;
+            background-color: aliceblue;
+            margin: auto;
+        }
+
+        p#question {
+            font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+            font-size: 75px;
+            text-align: center;
+            padding: 5px;
+        }
+
+        input {
+            height: 50px;
+            width: 100px;
+            font-size: x-large;
+            font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+            border: 1px 1px aliceblue;
+            background-color: black;
+            color: aliceblue;
+        }
+
+        button {
+            height: 30px;
+            width: 75px;
+            margin-left: 15px;
+            background-color: aliceblue;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-size: larger;
+            border-radius: 10%;
+        }
+
+        button:hover {
+            background-color: darkgray;
+        }
+
+
+
+        p#play {
+            color: aliceblue;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-size: x-large;
+            float: right;
+        }
+
+        p#score {
+            color: aliceblue;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-size: x-large;
+            float: right;
+            margin-right: -95px;
+        }
+    </style>
+</head>
+
+<body>
+    <p style="color: aliceblue; float: right;font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">
+        (Between 1 and 10)</p><br><br><br>
+    <hr>
+    <h1>Guess the Number</h1>
+    <hr />
+    <div id="qdiv">
+        <p id="question">?</p>
+    </div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <hr />
+    <div>
+        <p id="play">Let's Play 🎉</p><br><br>
+        <p id="score">Score = <a id="snum">0</a></p><br>
+        <input type="number" min="1" max="10" id="numid" /><br><br>
+        <button id="cbutton" type="button" onclick='check()'>Check</button>
+    </div>
+    <hr>
+    <script>
+        let x = Math.floor(Math.random() * 10) + 1;
+        console.log(x);
+        let score = 0;
+        const a = ['red', 'blue', 'yellow', 'green', 'white'];
+        let index = 0;
+        document.getElementById("cbutton").addEventListener('click', function onclick() {
+            document.getElementById("cbutton").style.backgroundColor = a[index];
+            index = index >= a.length - 1 ? 0 : index + 1;
+        });
+        function check() {
+            const c = document.getElementById("numid").value;
+            console.log(c);
+            if (c == x) {
+                document.getElementById("question").innerHTML = x;
+                document.body.style.backgroundColor = 'green';
+                score++;
+                document.getElementById("snum").innerHTML = score;
+                x = Math.floor(Math.random() * 10) + 1;
+                console.log(x)
+            } else {
+                document.getElementById("question").innerHTML = "❌";
+                document.body.style.backgroundColor = 'crimson';
+                score--;
+                document.getElementById("snum").innerHTML = score;
+            }
+        }
+    </script>
+</body>
+
+</html>
